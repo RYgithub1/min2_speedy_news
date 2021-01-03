@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:min2_speedy_news/style.dart';
+import 'package:min2_speedy_news/screens/home_screen.dart';
+import 'package:min2_speedy_news/style/style.dart';
 
 
 
@@ -13,11 +14,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'SPEEDY NEWS',
       theme: ThemeData(
-        brightness: Brightness.light,
+        // brightness: Brightness.dark,
         fontFamily: BoldFont,
-        // primarySwatch: Colors.orange,
+        primarySwatch: Colors.orange,
       ),
-      home: MyHomePage(title: 'SPEEDY NEWS'),
+      home: HomeScreen(),
     );
   }
 }
