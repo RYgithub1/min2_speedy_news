@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:min2_speedy_news/screens/home_screen.dart';
 import 'package:min2_speedy_news/style/style.dart';
+import 'package:min2_speedy_news/view/screens/home_screen.dart';
+import 'package:min2_speedy_news/viewmodels/news_list_viewmodel.dart';
+import 'package:provider/provider.dart';
 
 
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(
+    ChangeNotifierProvider<NewsListViewModel>(
+      create: (context) => NewsListViewModel(),
+      child: MyApp(),
+    ),
+  );
+}
 
 
 
