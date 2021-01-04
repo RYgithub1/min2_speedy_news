@@ -1,6 +1,6 @@
 
 /// [Class to exchange lang]
-class ChipCategoryName {
+class ChipCategoryName {  // from "Category CLASS"
 
   final categoryId;
   final categoryNameEn;
@@ -18,4 +18,5 @@ final List<ChipCategoryName> categories = [
   ChipCategoryName(categoryId: 4, categoryNameEn: "health", categoryNameJp: "健康"),
   ChipCategoryName(categoryId: 5, categoryNameEn: "sports", categoryNameJp: "スポーツ"),
   ChipCategoryName(categoryId: 6, categoryNameEn: "entertainment", categoryNameJp: "エンタメ"),
+  ChipCategoryName(categoryId: 7, categoryNameEn: "xxx", categoryNameJp: "xxx"),   /// [dammy]
 ];

@@ -1,4 +1,4 @@
-
+/// [アプリ上での検索タイプを定義]
 enum SearchType {
   HEAD_LINE,
   KEYWORD,
@@ -12,7 +12,6 @@ enum SearchType {
 //   B,
 //   C
 // }
-
 /// [Define value and getter]
 // extension TypeExtension on Type {
 //     static final typeNames = {
@@ -20,6 +19,5 @@ enum SearchType {
 //       Type.B: 'type B',
 //       Type.C: 'type C'
 //     };
-
 //     String get typeName => typeNames[this];
 // }

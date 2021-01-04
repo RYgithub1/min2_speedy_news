@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:min2_speedy_news/data/chip_category_name.dart';
+import 'package:min2_speedy_news/data/search_type.dart';
 import 'package:min2_speedy_news/view/components/category_chips.dart';
 import 'package:min2_speedy_news/view/components/search_bar.dart';
+import 'package:min2_speedy_news/viewmodels/news_list_viewmodel.dart';
+import 'package:provider/provider.dart';
 
 
 
@@ -16,7 +20,7 @@ class NewsListPage extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: <Widget>[
-              /// [Devide to class components]
+              /// [Devide class -> components]
               SearchBar(
                 onSearch: (keywordYade) => getKeywordNews(context, keywordYade),
               ),
@@ -41,16 +45,42 @@ class NewsListPage extends StatelessWidget {
 
 
   /// [========== method() ===========]
-  onRefresh(BuildContext context) {
+  // -- Refresh: fab --
+  Future<void> onRefresh(BuildContext context) async{
     print("comm: onRefresh()");
+    final viewModel = Provider.of<NewsListViewModel>(context, listen: false);
+    await viewModel.getNews(
+      searchType: viewModel.searchType,   /// ["viewModel"で定義した物を活用]
+      keyword: viewModel.keyword,
+      category: viewModel.category,
+    );
   }
 
-  getKeywordNews(BuildContext context, keyword) {
+
+  // -- KEYWORD: search bar --
+  Future<void> getKeywordNews(BuildContext context, keywordYade) async {
     print("comm: getKeywordNews()");
+    /// [Provider.of<TA>(): listen:false -> Needless UI rebuild]
+    final viewModel = Provider.of<NewsListViewModel>(context, listen: false);
+    await viewModel.getNews(
+      searchType: SearchType.KEYWORD,
+      keyword: keywordYade,
+      category: categories[7],   /// [初期値へ飛ばしてoverrideする値]
+      // category: category,
+    );
   }
 
-  getCategoryNews(BuildContext context, category) {
+
+  // -- CATEGORY: category chips --
+  Future<void> getCategoryNews(BuildContext context, categoryYade) async {
     print("comm: getCategoryNews()");
+    /// [Provider.of<TA>()]
+    final viewModel = Provider.of<NewsListViewModel>(context, listen: false);
+    await viewModel.getNews(
+      searchType: SearchType.CATEGORY,
+      keyword: "xxx",
+      category: categoryYade,
+    );
   }
 
 }
