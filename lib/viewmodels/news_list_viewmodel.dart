@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:min2_speedy_news/data/chip_category_name.dart';
 import 'package:min2_speedy_news/data/search_type.dart';
-import 'package:min2_speedy_news/repository/news_repository.dart';
+import 'package:min2_speedy_news/models/repository/news_repository.dart';
 
 
 
@@ -39,6 +39,12 @@ class NewsListViewModel extends ChangeNotifier {
 
 
 
+  /// [======== define article ========]
+  List<Article> _articles = List();
+  List<Article> get articles => _articles;
+
+
+
 
   /// [News受け渡し用method: Page -> ViewModel here -> Modelrepository]
   // model内で定義したTypeを引数にしつつ、受け渡す
@@ -55,11 +61,20 @@ class NewsListViewModel extends ChangeNotifier {
     _isLoading = true;
     notifyListeners();
     /// [Notify at viewModel -> Pass argus to ModelRepository]
+    // await _repository.getNews(
+    //   searchType: _searchType,
+    //   keyword: _keyword,
+    //   category: _category,
+    // );
+
+    // _articles = await _repository.getNews(
     await _repository.getNews(
       searchType: _searchType,
       keyword: _keyword,
       category: _category,
     );
+    _isLoading = false;
+    notifyListeners();
 
 
 
