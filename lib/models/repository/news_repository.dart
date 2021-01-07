@@ -18,14 +18,15 @@ class NewsRepository {
   // getNews({@required SearchType searchType, String keyword, ChipCategoryName category}) {
   // Future<void> getNews({@required SearchType searchType, String keyword, ChipCategoryName category}) async{
   Future<List<Article>> getNews({@required SearchType searchType, String keyword, ChipCategoryName category}) async {
-    print("comm Repository: : $searchType, $keyword, ${category.categoryNameJp}");
+    // / print("comm Repository: : $searchType, $keyword, ${category.categoryNameJp}");
+    /// [NOTICE: _repository.getNews共通化なら、引数categoryNameJpのnull"でエラー]
 
 
     /// [responceをDB/Cloudから取得してtry-catch]
     /// [{response/data}: 1.◯/◯, 2.◯/x, 3.x/-]
     /// [error: 'List' is deprecated and shouldn't be used.]
-    List<Article> result = List<Article>();  // TODO:
-    // List<Article> result = [];
+    /// List<Article> result = List<Article>();  /// [NOTICE: Creates a list of the given length.]
+    List<Article> result = [];
     // List<Article> result;
     Response response;
 

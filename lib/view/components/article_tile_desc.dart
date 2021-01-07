@@ -25,7 +25,6 @@ class ArticleTileDesc extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Divider();
         Text(
           article.title,
           style: textTheme.subtitle1.copyWith(   /// [copyWith(): defaultThemeの部分的修正]

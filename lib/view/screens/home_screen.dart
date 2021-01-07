@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:min2_speedy_news/view/screens/pages/about_us_page.dart';
-import 'package:min2_speedy_news/view/screens/pages/head_line_page.dart';
+import 'package:min2_speedy_news/view/screens/pages/headline_page.dart';
 import 'package:min2_speedy_news/view/screens/pages/news_list_page.dart';
 
 
@@ -17,7 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
   /// [BNB1.Create List for transfering and page index]
   int _currentIndex = 0;
   final _pages = [
-    HeadLinePage(),
+    HeadlinePage(),
     NewsListPage(),
     AboutUsPage(),
   ];

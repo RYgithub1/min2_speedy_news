@@ -12,13 +12,11 @@ import 'package:min2_speedy_news/models/model/news_model.dart';
 /// [logic -> Model() && bridge -> here, ViewModel()]
 class NewsListViewModel extends ChangeNotifier {
 
+  /// [xxxxxxxxx PROPERTY xxxxxxxxx]
   /// [======== Connect to NewsRepository() = Model layer ========]
   final NewsRepository _repository = NewsRepository();
   // final NewsRepository _repository;
   // NewsListViewModel({repository}): _repository = repository;
-
-
-
 
   /// [======== Connect to Page = View layer ========]
   /// [enum方法：serchTypeをpropertyとしてもつ]
@@ -42,21 +40,20 @@ class NewsListViewModel extends ChangeNotifier {
   bool get isLoading => _isLoading;
 
 
-
   /// [======== define article ========]
   /// [repositoryから -> ViewModelへ受け取りnotifyListeners()通知]
-  List<Article> _articles = List();  // TODO:
-  // List<Article> _articles = [];
+  /// List<Article> _articles = List();  /// [NOTICE: Creates a list of the given length.]
+  List<Article> _articles = [];
   List<Article> get articles => _articles;
 
 
 
-
+  /// [xxxxxxxxx METHOD xxxxxxxxx]
   /// [News受け渡し用method: Page -> ViewModel here -> Modelrepository]
   // model内で定義したTypeを引数にしつつ、受け渡す
   // getNews({@required SearchType searchType, String keyword, ChipCategoryName category}) {
   /// [* 時間のかかる処理はFuture]
-  Future<void> getNews({@required SearchType searchType, String keyword, ChipCategoryName category}) async{
+  Future<void> getNews({@required SearchType searchType, String keyword, ChipCategoryName category}) async {
       /// print("comm ViewModel: $searchType, $keyword, ${category.categoryNameJp}, ${articles[0]}");  [-> Instance of 'Article'そのまま渡してしまう]
       // print("comm ViewModel_1: $searchType, $keyword, ${category.categoryNameJp}, ${_articles[0].title}");  // _articles[0]もarticles[0]もエラー「Valid value range is empty: 0」
       print("comm ViewModel_1: $searchType, $keyword, ${category.categoryNameJp},  ok");   /// [ok, without _articles[0]]
@@ -93,6 +90,8 @@ class NewsListViewModel extends ChangeNotifier {
   }
 
 
+
+  /// [xxxxxxxxx DISPOSE xxxxxxxxx]
   @override
   void dispose() {
     _repository.dispose();  /// [ApiServiseのdispose]
