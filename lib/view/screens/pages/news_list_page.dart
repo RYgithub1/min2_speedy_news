@@ -14,6 +14,19 @@ class NewsListPage extends StatelessWidget {
   /// [========== build() ===========]
   @override
   Widget build(BuildContext context) {
+
+    /// [contextゆえbuild配下...VMからProvide受けるインスタンス定義=Lodingチェック用]
+    /// [UI用でなくcallのみゆえrebuild()させない]
+    final viewModel = Provider.of<NewsListViewModel>(context, listen: false);
+    /// [(!=)ロードしてない,&&記事が一件もない  // VM経由でcall、ロード状況で場合分け]
+    if(!viewModel.isLoading && viewModel.articles.isEmpty) {
+      // viewModel.getNews(searchType: SearchType.CATEGORY, category: categories[0]);
+      /// [FutureError <- 「setState() or markNeedsBuild() called during build.」]
+      // TODO: 単純にFuture or Future(() => XXX)
+      Future(() => viewModel.getNews(searchType: SearchType.CATEGORY, category: categories[0]));
+    }
+
+
     return SafeArea(
       child: Scaffold(
         body: Padding(
@@ -27,7 +40,24 @@ class NewsListPage extends StatelessWidget {
               CategoryChips(
                 onCategorySelected: (categoryYade) => getCategoryNews(context, categoryYade),
               ),
-              Expanded(child: Center(child: CircularProgressIndicator())),
+
+              Expanded(
+                child: Consumer<NewsListViewModel>(
+                  builder: (context, newsListViewModel, child) {
+                    return newsListViewModel.isLoading    /// [isLoding=true -> Circular]
+                        ? Center(child: CircularProgressIndicator())
+                        : ListView.builder(
+                            itemCount: newsListViewModel.articles.length,
+                            itemBuilder: (context, int position) {
+                                return ListTile(
+                                  title: Text(newsListViewModel.articles[position].title),
+                                  subtitle: Text(newsListViewModel.articles[position].description),
+                                );
+                            },
+                        );
+                  },
+                ),
+              ),
             ],
           ),
         ),
