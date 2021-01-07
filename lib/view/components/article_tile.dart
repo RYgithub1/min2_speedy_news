@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 /// [tegaki: import:xxx/news_model.dart]
 import 'package:min2_speedy_news/models/model/news_model.dart';
+import 'package:min2_speedy_news/view/components/article_tile_desc.dart';
 import 'package:min2_speedy_news/view/components/image_from_url.dart';
 
 
@@ -40,13 +41,7 @@ class ArticleTile extends StatelessWidget {
                 flex: 3,
                 child: Padding(
                   padding: const EdgeInsets.all(8),
-                  child: Column(
-                    children: <Widget>[
-                      Text(article.title),
-                      Text(article.publishDate),
-                      Text(article.description),
-                    ],
-                  ),
+                  child: ArticleTileDesc(article: article),
                 ),
               ),
             ],
