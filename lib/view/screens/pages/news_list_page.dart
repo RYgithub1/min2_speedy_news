@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:min2_speedy_news/data/category_info.dart';
 import 'package:min2_speedy_news/data/search_type.dart';
+import 'package:min2_speedy_news/view/components/article_tile.dart';
 import 'package:min2_speedy_news/view/components/category_chips.dart';
 import 'package:min2_speedy_news/view/components/search_bar.dart';
 import 'package:min2_speedy_news/viewmodels/news_list_viewmodel.dart';
 import 'package:provider/provider.dart';
+/// [tegaki: import:xxx/news_model.dart]
+import 'package:min2_speedy_news/models/model/news_model.dart';
 
 
 
@@ -49,9 +52,14 @@ class NewsListPage extends StatelessWidget {
                         : ListView.builder(
                             itemCount: newsListViewModel.articles.length,
                             itemBuilder: (context, int position) {
-                                return ListTile(
-                                  title: Text(newsListViewModel.articles[position].title),
-                                  subtitle: Text(newsListViewModel.articles[position].description),
+                                // return ListTile(
+                                //   title: Text(newsListViewModel.articles[position].title),
+                                //   subtitle: Text(newsListViewModel.articles[position].description),
+                                // );
+                                // return ArticleTile();
+                                return ArticleTile(   /// [pass argu]
+                                  article: newsListViewModel.articles[position],
+                                  onArticleClicked: (articleYade) => _openArticleWebPage(articleYade, context),
                                 );
                             },
                         );
@@ -110,6 +118,15 @@ class NewsListPage extends StatelessWidget {
       keyword: "xxx",
       category: categoryYade,
     );
+  }
+
+
+
+  /// [----- click処理 -----]
+  // ValueChanged _openArticleWebPage(Article articleYade, BuildContext context) {
+  void _openArticleWebPage(Article articleYade, BuildContext context) {
+    /// print("comm1234: _openArticleWebPage: $articleYade");   /// [Array itself -> error: Instance of 'Article']
+    print("comm: _openArticleWebPage: ${articleYade.url}");
   }
 
 }
