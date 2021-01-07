@@ -1,8 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:min2_speedy_news/data/chip_category_name.dart';
+import 'package:min2_speedy_news/data/category_info.dart';
 import 'package:min2_speedy_news/data/search_type.dart';
 import 'package:min2_speedy_news/models/repository/news_repository.dart';
+/// [tegaki: no import, no type]
+import 'package:min2_speedy_news/models/model/news_model.dart';
+// import 'package:min2_speedy_news/models/model/news_model.g.dart';
 
 
 
@@ -11,6 +14,8 @@ class NewsListViewModel extends ChangeNotifier {
 
   /// [======== Connect to NewsRepository() = Model layer ========]
   final NewsRepository _repository = NewsRepository();
+  // final NewsRepository _repository;
+  // NewsListViewModel({repository}): _repository = repository;
 
 
 
@@ -38,9 +43,10 @@ class NewsListViewModel extends ChangeNotifier {
 
 
 
-
   /// [======== define article ========]
-  List<Article> _articles = List();
+  /// [repositoryから -> ViewModelへ受け取りnotifyListeners()通知]
+  List<Article> _articles = List();  // TODO:
+  // List<Article> _articles = [];
   List<Article> get articles => _articles;
 
 
@@ -51,35 +57,46 @@ class NewsListViewModel extends ChangeNotifier {
   // getNews({@required SearchType searchType, String keyword, ChipCategoryName category}) {
   /// [* 時間のかかる処理はFuture]
   Future<void> getNews({@required SearchType searchType, String keyword, ChipCategoryName category}) async{
-    print("comm ViewModel: $searchType, $keyword, ${category.categoryNameJp}");
+      /// print("comm ViewModel: $searchType, $keyword, ${category.categoryNameJp}, ${articles[0]}");  [-> Instance of 'Article'そのまま渡してしまう]
+      // print("comm ViewModel_1: $searchType, $keyword, ${category.categoryNameJp}, ${_articles[0].title}");  // _articles[0]もarticles[0]もエラー「Valid value range is empty: 0」
+      print("comm ViewModel_1: $searchType, $keyword, ${category.categoryNameJp},  ok");   /// [ok, without _articles[0]]
 
-    /// [Set argu gotten]
-    _searchType = searchType;
-    _keyword = keyword;
-    _category = category;
-    /// [データ取得開始->loading（CircularProgressIndicator）->ChangeNotifierへ変更通知]
-    _isLoading = true;
-    notifyListeners();
-    /// [Notify at viewModel -> Pass argus to ModelRepository]
-    // await _repository.getNews(
-    //   searchType: _searchType,
-    //   keyword: _keyword,
-    //   category: _category,
-    // );
-
-    // _articles = await _repository.getNews(
-    await _repository.getNews(
-      searchType: _searchType,
-      keyword: _keyword,
-      category: _category,
-    );
-    _isLoading = false;
-    notifyListeners();
+      /// [Set argu gotten]
+      _searchType = searchType;
+      _keyword = keyword;
+      _category = category;
+      /// [データ取得開始->loading（CircularProgressIndicator）->ChangeNotifierへ変更通知]
+      _isLoading = true;
+      notifyListeners();
+      /// [Notify at viewModel -> Pass argus to ModelRepository]
+      // await _repository.getNews(
+      //   searchType: _searchType,
+      //   keyword: _keyword,
+      //   category: _category,
+      // );
 
 
+      // await _repository.getNews(
+      /// [戻り値として返すのでなく代入（通知->viewに反映）]
+      _articles = await _repository.getNews(
+          searchType: _searchType,
+          keyword: _keyword,
+          category: _category,
+      );
+
+      print("\n\ncomm ViewModel_2: $_searchType, $_keyword, $_category, ${_articles[0].title}");
+      // print("\n\n\ncomm ViewModel_3: ${_articles[0].title}");
+      // print("\n\n\ncomm ViewModel_4: ${articles[0].title}");
+
+      _isLoading = false;
+      notifyListeners();
+  }
 
 
-
+  @override
+  void dispose() {
+    _repository.dispose();  /// [ApiServiseのdispose]
+    super.dispose();
   }
 
 

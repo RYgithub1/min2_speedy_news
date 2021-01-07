@@ -4,7 +4,8 @@ part 'news_model.g.dart';
 
 
 
-/// [News API のURL -> 2CLASS作成/ネスト構造->CLASS重ねて表現]
+// [News API のURL -> 2CLASS作成/ネスト構造->CLASS重ねて表現]
+// [.fromJson: JsonからModelCLASSに変換]
 // ------ １階層 ------
 // 自動生成ファイル用_fromJson_toJson
 @JsonSerializable()
@@ -18,8 +19,8 @@ class News {
 
 
 // ------ ２階層 ------
-/// [nestしている各々にannotation必要]
-/// [parametaをpropaty名にしない場合 -> @JsonKey]
+// [nestしている各々にannotation必要]
+// [parametaをpropaty名にしない場合 -> @JsonKey]
 // 自動生成ファイル用_fromJson_toJson
 @JsonSerializable()
 class Article {

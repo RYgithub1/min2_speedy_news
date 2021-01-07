@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:min2_speedy_news/data/chip_category_name.dart';
+import 'package:min2_speedy_news/data/category_info.dart';
 import 'package:min2_speedy_news/data/search_type.dart';
 import 'package:min2_speedy_news/view/components/category_chips.dart';
 import 'package:min2_speedy_news/view/components/search_bar.dart';
@@ -28,7 +28,6 @@ class NewsListPage extends StatelessWidget {
                 onCategorySelected: (categoryYade) => getCategoryNews(context, categoryYade),
               ),
               Expanded(child: Center(child: CircularProgressIndicator())),
-              
             ],
           ),
         ),
@@ -44,7 +43,7 @@ class NewsListPage extends StatelessWidget {
 
 
 
-  /// [========== method() ===========]
+  /// [===== method() ======]
   // -- Refresh: fab --
   Future<void> onRefresh(BuildContext context) async{
     print("comm: onRefresh()");
@@ -65,7 +64,7 @@ class NewsListPage extends StatelessWidget {
     await viewModel.getNews(
       searchType: SearchType.KEYWORD,
       keyword: keywordYade,
-      category: categories[7],   /// [初期値へ飛ばしてoverrideする値]
+      category: categories[0],   /// [初期値へ飛ばしてoverrideする値]
       // category: category,
     );
   }
@@ -84,7 +83,3 @@ class NewsListPage extends StatelessWidget {
   }
 
 }
-
-
-
-/// [----- sup -----]

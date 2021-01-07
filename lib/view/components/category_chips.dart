@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:min2_speedy_news/data/chip_category_name.dart';
+import 'package:min2_speedy_news/data/category_info.dart';
 
 
 

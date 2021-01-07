@@ -1,5 +1,6 @@
 
 /// [Class to exchange lang]
+// chip_category_name.dart <-> category.dart
 class ChipCategoryName {  // from "Category CLASS"
 
   final categoryId;
@@ -18,5 +19,5 @@ final List<ChipCategoryName> categories = [
   ChipCategoryName(categoryId: 4, categoryNameEn: "health", categoryNameJp: "健康"),
   ChipCategoryName(categoryId: 5, categoryNameEn: "sports", categoryNameJp: "スポーツ"),
   ChipCategoryName(categoryId: 6, categoryNameEn: "entertainment", categoryNameJp: "エンタメ"),
-  ChipCategoryName(categoryId: 7, categoryNameEn: "xxx", categoryNameJp: "xxx"),   /// [dammy]
+  // Category(categoryId: 7, categoryNameEn: "xxx", categoryNameJp: "xxx"),   /// [dammy]
 ];
