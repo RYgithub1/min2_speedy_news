@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 /// [tegaki: import:xxx/news_model.dart]
 import 'package:min2_speedy_news/models/model/news_model.dart';
+import 'package:min2_speedy_news/view/components/image_from_url.dart';
 
 
 
@@ -29,9 +30,10 @@ class ArticleTile extends StatelessWidget {
             children:<Widget>[
               Expanded(
                 flex: 1,
-                child: Padding(
+                child: Container(
+                  margin: const EdgeInsets.only(top: 8),
                   padding: const EdgeInsets.all(8),
-                  child: Container(),
+                  child: ImageFromUrl(imageUrl: article.urlToImage),
                 ),
               ),
               Expanded(
