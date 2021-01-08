@@ -122,7 +122,7 @@ class NewsListPage extends StatelessWidget {
 
 
 
-  /// [----- click処理 -----]
+  /// [----- click処理_news list page -----]
   // ValueChanged _openArticleWebPage(Article articleYade, BuildContext context) {
   void _openArticleWebPage(Article articleYade, BuildContext context) {
     /// print("comm1234: _openArticleWebPage: $articleYade");   /// [Array itself -> error: Instance of 'Article']
