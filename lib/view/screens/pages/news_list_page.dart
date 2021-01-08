@@ -4,6 +4,7 @@ import 'package:min2_speedy_news/data/search_type.dart';
 import 'package:min2_speedy_news/view/components/article_tile.dart';
 import 'package:min2_speedy_news/view/components/category_chips.dart';
 import 'package:min2_speedy_news/view/components/search_bar.dart';
+import 'package:min2_speedy_news/view/screens/news_web_page_screen.dart';
 import 'package:min2_speedy_news/viewmodels/news_list_viewmodel.dart';
 import 'package:provider/provider.dart';
 /// [tegaki: import:xxx/news_model.dart]
@@ -123,10 +124,16 @@ class NewsListPage extends StatelessWidget {
 
 
   /// [----- click処理_news list page -----]
+  /// [newsListPage->webPage: When click article, access to each web page]
   // ValueChanged _openArticleWebPage(Article articleYade, BuildContext context) {
   void _openArticleWebPage(Article articleYade, BuildContext context) {
     /// print("comm1234: _openArticleWebPage: $articleYade");   /// [Array itself -> error: Instance of 'Article']
     print("comm: _openArticleWebPage: ${articleYade.url}");
+    Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => NewsWebPageScreen(article: articleYade),
+        ),
+    );
   }
 
 }

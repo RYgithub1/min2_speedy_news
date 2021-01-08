@@ -3,6 +3,7 @@ import 'package:min2_speedy_news/data/category_info.dart';
 import 'package:min2_speedy_news/data/search_type.dart';
 import 'package:min2_speedy_news/view/components/headline_item.dart';
 import 'package:min2_speedy_news/view/components/page_transformer.dart';
+import 'package:min2_speedy_news/view/screens/news_web_page_screen.dart';
 import 'package:min2_speedy_news/viewmodels/headline_viewmodel.dart';
 import 'package:provider/provider.dart';
 /// [tegaki: no import, no type]
@@ -89,9 +90,16 @@ class HeadlinePage extends StatelessWidget {
     await viewModel.getHeadlines(searchType: SearchType.HEAD_LINE);
   }
 
+
   /// [----- click処理_headline page -----]
+  /// [headline->webPage: When click article, access to each web page]
   void _openArticleHeadlinePage(Article articleZoi, BuildContext context) {
     print("comm: _openArticleHeadlinePage: ${articleZoi.url}");
+    Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => NewsWebPageScreen(article: articleZoi),
+        ),
+    );
   }
 
 }
