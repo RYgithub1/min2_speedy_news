@@ -36,6 +36,11 @@ dev_dependencies:
   moor_generator: ^3.4.0
 
 
+dependency_overrides:
+  # analyzer: '0.39.14'
+  analyzer: '0.41.1'
+
+
 flutter_icons:
   android: "launcher_icon"
   ios: true

@@ -5,9 +5,19 @@ import 'package:min2_speedy_news/viewmodels/headline_viewmodel.dart';
 import 'package:min2_speedy_news/viewmodels/news_list_viewmodel.dart';
 import 'package:provider/provider.dart';
 
+/// [tegaki: g.dart生成用ファイルのクラス呼び込み]
+import 'package:min2_speedy_news/models/db/database.dart';
+
+
+
+
+MyDatabase myDatabase;  /// [Moor-Dao]
+/// MyDatabase myDatabase = MyDatabase();  /// [Moor-Dao]
 
 
 void main() {
+  myDatabase = MyDatabase();  /// [Moor-Dao]
+
   runApp(
     MultiProvider(
       providers: [   /// [NEST: Nest structure actually -> Need to consider nest order]

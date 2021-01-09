@@ -12,7 +12,9 @@ import 'package:min2_speedy_news/models/model/news_model.dart';
 /// [MVVM -> Model contacted to ViewModel layer]
 class NewsRepository {
 
+  /// [可読性のため外出ししていたAPI呼び込み用クラスを使いたい->Repositoryでインスタンス化]
   final ApiService _apiService = ApiService.create();
+
 
   // argu of viewModel -> view
   // getNews({@required SearchType searchType, String keyword, ChipCategoryName category}) {
@@ -51,7 +53,7 @@ class NewsRepository {
 
         if (response.isSuccessful) {   /// [1.◯/◯]
             final responseBody = response.body;
-            result = News.fromJson(responseBody).articles;
+            result = News.fromJson(responseBody).articles;   /// [news_repository.dart/News class/ .fromJson]
             /// print("comm: ◯/◯: $result");  [articlesゆえ詳細指定しないと、配列「Instance of 'Article',xxx」を返す]
             print("comm: Repository: ◯/◯: $responseBody");   /// [Json多階層で返す]
         } else {   /// [2.◯/x]
