@@ -2,10 +2,16 @@ import 'package:chopper/chopper.dart';
 import 'package:flutter/material.dart';
 import 'package:min2_speedy_news/data/category_info.dart';
 import 'package:min2_speedy_news/data/search_type.dart';
+import 'package:min2_speedy_news/main.dart';
 import 'package:min2_speedy_news/models/networking/api_service.dart';
 /// [tegaki: no import, no type]
 import 'package:min2_speedy_news/models/model/news_model.dart';
 // import 'package:min2_speedy_news/models/model/news_model.g.dart';
+
+/// [tegaki: no import, no type]
+import 'package:min2_speedy_news/util/extentions.dart';
+
+
 
 
 
@@ -56,6 +62,8 @@ class NewsRepository {
             result = News.fromJson(responseBody).articles;   /// [news_repository.dart/News class/ .fromJson]
             /// print("comm: ◯/◯: $result");  [articlesゆえ詳細指定しないと、配列「Instance of 'Article',xxx」を返す]
             print("comm: Repository: ◯/◯: $responseBody");   /// [Json多階層で返す]
+            // result = await insertAndReadFromDB();
+            result = await insertAndReadFromDB(responseBody);
         } else {   /// [2.◯/x]
             final errorCode = response.statusCode;
             final error = response.error;
@@ -73,6 +81,24 @@ class NewsRepository {
   /// [ApiService -> NEED dispose() ... also define _repository.dispose();]
   void dispose() {
     _apiService.dispose();
+  }
+
+
+
+
+
+  /// [RepoでMoor形式受け渡しや変換]
+  Future<List<Article>> insertAndReadFromDB(responseBody) async {
+
+    final dao = myDatabase.newsDao;   /// [DB使うので定義]
+
+    final articles = News.fromJson(responseBody).articles;   /// [JsonからModelクラスに変換]
+    final articleMoors = await dao.insertAndReadNeawsFromDB(
+      articles.toArticleMoors(articles),
+    );
+
+    /// [DBから取得したデータをModelクラスに再変換してRepositoryに格納（これでVMに返せる）]
+    return articleMoors.toArticles(articleMoors);
   }
 
 }

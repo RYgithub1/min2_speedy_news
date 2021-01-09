@@ -27,7 +27,7 @@ class ArticleMoors extends Table {   /// [Moor rule: only XXXs]
   TextColumn get description => text()();
   TextColumn get url => text()();
   TextColumn get urlToImage => text()();
-  TextColumn get punbilshDate => text()();
+  TextColumn get publishDate => text()();
   TextColumn get content => text()();
 
   /// [DB操作する場合primaryKeyが必要]

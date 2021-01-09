@@ -12,14 +12,14 @@ class ArticleMoor extends DataClass implements Insertable<ArticleMoor> {
   final String description;
   final String url;
   final String urlToImage;
-  final String punbilshDate;
+  final String publishDate;
   final String content;
   ArticleMoor(
       {@required this.title,
       @required this.description,
       @required this.url,
       @required this.urlToImage,
-      @required this.punbilshDate,
+      @required this.publishDate,
       @required this.content});
   factory ArticleMoor.fromData(Map<String, dynamic> data, GeneratedDatabase db,
       {String prefix}) {
@@ -33,8 +33,8 @@ class ArticleMoor extends DataClass implements Insertable<ArticleMoor> {
       url: stringType.mapFromDatabaseResponse(data['${effectivePrefix}url']),
       urlToImage: stringType
           .mapFromDatabaseResponse(data['${effectivePrefix}url_to_image']),
-      punbilshDate: stringType
-          .mapFromDatabaseResponse(data['${effectivePrefix}punbilsh_date']),
+      publishDate: stringType
+          .mapFromDatabaseResponse(data['${effectivePrefix}publish_date']),
       content:
           stringType.mapFromDatabaseResponse(data['${effectivePrefix}content']),
     );
@@ -54,8 +54,8 @@ class ArticleMoor extends DataClass implements Insertable<ArticleMoor> {
     if (!nullToAbsent || urlToImage != null) {
       map['url_to_image'] = Variable<String>(urlToImage);
     }
-    if (!nullToAbsent || punbilshDate != null) {
-      map['punbilsh_date'] = Variable<String>(punbilshDate);
+    if (!nullToAbsent || publishDate != null) {
+      map['publish_date'] = Variable<String>(publishDate);
     }
     if (!nullToAbsent || content != null) {
       map['content'] = Variable<String>(content);
@@ -74,9 +74,9 @@ class ArticleMoor extends DataClass implements Insertable<ArticleMoor> {
       urlToImage: urlToImage == null && nullToAbsent
           ? const Value.absent()
           : Value(urlToImage),
-      punbilshDate: punbilshDate == null && nullToAbsent
+      publishDate: publishDate == null && nullToAbsent
           ? const Value.absent()
-          : Value(punbilshDate),
+          : Value(publishDate),
       content: content == null && nullToAbsent
           ? const Value.absent()
           : Value(content),
@@ -91,7 +91,7 @@ class ArticleMoor extends DataClass implements Insertable<ArticleMoor> {
       description: serializer.fromJson<String>(json['description']),
       url: serializer.fromJson<String>(json['url']),
       urlToImage: serializer.fromJson<String>(json['urlToImage']),
-      punbilshDate: serializer.fromJson<String>(json['punbilshDate']),
+      publishDate: serializer.fromJson<String>(json['publishDate']),
       content: serializer.fromJson<String>(json['content']),
     );
   }
@@ -103,7 +103,7 @@ class ArticleMoor extends DataClass implements Insertable<ArticleMoor> {
       'description': serializer.toJson<String>(description),
       'url': serializer.toJson<String>(url),
       'urlToImage': serializer.toJson<String>(urlToImage),
-      'punbilshDate': serializer.toJson<String>(punbilshDate),
+      'publishDate': serializer.toJson<String>(publishDate),
       'content': serializer.toJson<String>(content),
     };
   }
@@ -113,14 +113,14 @@ class ArticleMoor extends DataClass implements Insertable<ArticleMoor> {
           String description,
           String url,
           String urlToImage,
-          String punbilshDate,
+          String publishDate,
           String content}) =>
       ArticleMoor(
         title: title ?? this.title,
         description: description ?? this.description,
         url: url ?? this.url,
         urlToImage: urlToImage ?? this.urlToImage,
-        punbilshDate: punbilshDate ?? this.punbilshDate,
+        publishDate: publishDate ?? this.publishDate,
         content: content ?? this.content,
       );
   @override
@@ -130,7 +130,7 @@ class ArticleMoor extends DataClass implements Insertable<ArticleMoor> {
           ..write('description: $description, ')
           ..write('url: $url, ')
           ..write('urlToImage: $urlToImage, ')
-          ..write('punbilshDate: $punbilshDate, ')
+          ..write('publishDate: $publishDate, ')
           ..write('content: $content')
           ..write(')'))
         .toString();
@@ -144,7 +144,7 @@ class ArticleMoor extends DataClass implements Insertable<ArticleMoor> {
           $mrjc(
               url.hashCode,
               $mrjc(urlToImage.hashCode,
-                  $mrjc(punbilshDate.hashCode, content.hashCode))))));
+                  $mrjc(publishDate.hashCode, content.hashCode))))));
   @override
   bool operator ==(dynamic other) =>
       identical(this, other) ||
@@ -153,7 +153,7 @@ class ArticleMoor extends DataClass implements Insertable<ArticleMoor> {
           other.description == this.description &&
           other.url == this.url &&
           other.urlToImage == this.urlToImage &&
-          other.punbilshDate == this.punbilshDate &&
+          other.publishDate == this.publishDate &&
           other.content == this.content);
 }
 
@@ -162,14 +162,14 @@ class ArticleMoorsCompanion extends UpdateCompanion<ArticleMoor> {
   final Value<String> description;
   final Value<String> url;
   final Value<String> urlToImage;
-  final Value<String> punbilshDate;
+  final Value<String> publishDate;
   final Value<String> content;
   const ArticleMoorsCompanion({
     this.title = const Value.absent(),
     this.description = const Value.absent(),
     this.url = const Value.absent(),
     this.urlToImage = const Value.absent(),
-    this.punbilshDate = const Value.absent(),
+    this.publishDate = const Value.absent(),
     this.content = const Value.absent(),
   });
   ArticleMoorsCompanion.insert({
@@ -177,20 +177,20 @@ class ArticleMoorsCompanion extends UpdateCompanion<ArticleMoor> {
     @required String description,
     @required String url,
     @required String urlToImage,
-    @required String punbilshDate,
+    @required String publishDate,
     @required String content,
   })  : title = Value(title),
         description = Value(description),
         url = Value(url),
         urlToImage = Value(urlToImage),
-        punbilshDate = Value(punbilshDate),
+        publishDate = Value(publishDate),
         content = Value(content);
   static Insertable<ArticleMoor> custom({
     Expression<String> title,
     Expression<String> description,
     Expression<String> url,
     Expression<String> urlToImage,
-    Expression<String> punbilshDate,
+    Expression<String> publishDate,
     Expression<String> content,
   }) {
     return RawValuesInsertable({
@@ -198,7 +198,7 @@ class ArticleMoorsCompanion extends UpdateCompanion<ArticleMoor> {
       if (description != null) 'description': description,
       if (url != null) 'url': url,
       if (urlToImage != null) 'url_to_image': urlToImage,
-      if (punbilshDate != null) 'punbilsh_date': punbilshDate,
+      if (publishDate != null) 'publish_date': publishDate,
       if (content != null) 'content': content,
     });
   }
@@ -208,14 +208,14 @@ class ArticleMoorsCompanion extends UpdateCompanion<ArticleMoor> {
       Value<String> description,
       Value<String> url,
       Value<String> urlToImage,
-      Value<String> punbilshDate,
+      Value<String> publishDate,
       Value<String> content}) {
     return ArticleMoorsCompanion(
       title: title ?? this.title,
       description: description ?? this.description,
       url: url ?? this.url,
       urlToImage: urlToImage ?? this.urlToImage,
-      punbilshDate: punbilshDate ?? this.punbilshDate,
+      publishDate: publishDate ?? this.publishDate,
       content: content ?? this.content,
     );
   }
@@ -235,8 +235,8 @@ class ArticleMoorsCompanion extends UpdateCompanion<ArticleMoor> {
     if (urlToImage.present) {
       map['url_to_image'] = Variable<String>(urlToImage.value);
     }
-    if (punbilshDate.present) {
-      map['punbilsh_date'] = Variable<String>(punbilshDate.value);
+    if (publishDate.present) {
+      map['publish_date'] = Variable<String>(publishDate.value);
     }
     if (content.present) {
       map['content'] = Variable<String>(content.value);
@@ -251,7 +251,7 @@ class ArticleMoorsCompanion extends UpdateCompanion<ArticleMoor> {
           ..write('description: $description, ')
           ..write('url: $url, ')
           ..write('urlToImage: $urlToImage, ')
-          ..write('punbilshDate: $punbilshDate, ')
+          ..write('publishDate: $publishDate, ')
           ..write('content: $content')
           ..write(')'))
         .toString();
@@ -313,15 +313,15 @@ class $ArticleMoorsTable extends ArticleMoors
     );
   }
 
-  final VerificationMeta _punbilshDateMeta =
-      const VerificationMeta('punbilshDate');
-  GeneratedTextColumn _punbilshDate;
+  final VerificationMeta _publishDateMeta =
+      const VerificationMeta('publishDate');
+  GeneratedTextColumn _publishDate;
   @override
-  GeneratedTextColumn get punbilshDate =>
-      _punbilshDate ??= _constructPunbilshDate();
-  GeneratedTextColumn _constructPunbilshDate() {
+  GeneratedTextColumn get publishDate =>
+      _publishDate ??= _constructPublishDate();
+  GeneratedTextColumn _constructPublishDate() {
     return GeneratedTextColumn(
-      'punbilsh_date',
+      'publish_date',
       $tableName,
       false,
     );
@@ -341,7 +341,7 @@ class $ArticleMoorsTable extends ArticleMoors
 
   @override
   List<GeneratedColumn> get $columns =>
-      [title, description, url, urlToImage, punbilshDate, content];
+      [title, description, url, urlToImage, publishDate, content];
   @override
   $ArticleMoorsTable get asDslTable => this;
   @override
@@ -381,13 +381,13 @@ class $ArticleMoorsTable extends ArticleMoors
     } else if (isInserting) {
       context.missing(_urlToImageMeta);
     }
-    if (data.containsKey('punbilsh_date')) {
+    if (data.containsKey('publish_date')) {
       context.handle(
-          _punbilshDateMeta,
-          punbilshDate.isAcceptableOrUnknown(
-              data['punbilsh_date'], _punbilshDateMeta));
+          _publishDateMeta,
+          publishDate.isAcceptableOrUnknown(
+              data['publish_date'], _publishDateMeta));
     } else if (isInserting) {
-      context.missing(_punbilshDateMeta);
+      context.missing(_publishDateMeta);
     }
     if (data.containsKey('content')) {
       context.handle(_contentMeta,
