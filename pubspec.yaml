@@ -24,6 +24,7 @@ dependencies:
   sqlite3_flutter_libs: ^0.3.0
   path_provider:
   path:
+  auto_size_text: ^2.1.0
 
 
 dev_dependencies:
