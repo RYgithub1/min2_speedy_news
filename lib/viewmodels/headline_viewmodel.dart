@@ -10,7 +10,11 @@ import 'package:min2_speedy_news/models/repository/news_repository.dart';
 class HeadlineViewModel extends ChangeNotifier {
 
   /// [PROPERTY: Use same property as NewsListViewModel]
-  final NewsRepository _repository = NewsRepository();   /// [Bridge VM and R: Repository共通使用]
+  // final NewsRepository _repository = NewsRepository();   /// [Bridge VM and R: Repository共通使用]
+  /// [````` For ProxyProvider `````]
+  final NewsRepository _repository;   /// [Bridge VM and R: Repository共通使用]
+  HeadlineViewModel({repository}) : _repository = repository;
+
   SearchType _searchType = SearchType.HEAD_LINE;
   SearchType get searchType => _searchType;
   bool _isLoading = false;

@@ -11,6 +11,10 @@ import 'package:min2_speedy_news/models/model/news_model.dart';
 /// [tegaki: no import, no type]
 import 'package:min2_speedy_news/util/extentions.dart';
 
+import '../networking/api_service.dart';
+
+/// [tegaki: no import, no type]
+import 'package:min2_speedy_news/models/db/dao.dart';
 
 
 
@@ -19,7 +23,12 @@ import 'package:min2_speedy_news/util/extentions.dart';
 class NewsRepository {
 
   /// [可読性のため外出ししていたAPI呼び込み用クラスを使いたい->Repositoryでインスタンス化]
-  final ApiService _apiService = ApiService.create();
+  // final ApiService _apiService = ApiService.create();
+  /// [````` For ProxyProvider `````]
+  final ApiService _apiService;
+  final NewsDao _dao;
+  NewsRepository({dao, apiService}) : _apiService = apiService, _dao = dao;
+
 
 
   // argu of viewModel -> view
@@ -90,10 +99,14 @@ class NewsRepository {
   /// [RepoでMoor形式受け渡しや変換]
   Future<List<Article>> insertAndReadFromDB(responseBody) async {
 
-    final dao = myDatabase.newsDao;   /// [DB使うので定義]
+    // final dao = myDatabase.newsDao;   /// [DB使うので定義]
+    /// [````` For ProxyProvider `````]
+
 
     final articles = News.fromJson(responseBody).articles;   /// [JsonからModelクラスに変換]
-    final articleMoors = await dao.insertAndReadNeawsFromDB(
+    // final articleMoors = await dao.insertAndReadNeawsFromDB(
+    /// [````` For ProxyProvider `````]
+    final articleMoors = await _dao.insertAndReadNeawsFromDB(
       articles.toArticleMoors(articles),
     );
 

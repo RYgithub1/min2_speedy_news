@@ -14,9 +14,12 @@ class NewsListViewModel extends ChangeNotifier {
 
   /// [xxxxxxxxx PROPERTY xxxxxxxxx]
   /// [======== Connect to NewsRepository() = Model layer ========]
-  final NewsRepository _repository = NewsRepository();
-  // final NewsRepository _repository;
-  // NewsListViewModel({repository}): _repository = repository;
+  // final NewsRepository _repository = NewsRepository();
+  /// [````` For ProxyProvider `````]
+  final NewsRepository _repository;
+  NewsListViewModel({repository}): _repository = repository;
+
+
 
   /// [======== Connect to Page = View layer ========]
   /// [enum方法：serchTypeをpropertyとしてもつ]
