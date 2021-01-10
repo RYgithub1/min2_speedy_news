@@ -1,6 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.min2_speedy_news">
-   <application
+
+  <uses-permission android:name="android.permission.INTERNET/">
+
+  <application
         android:label="min2_speedy_news"
         android:icon="@mipmap/launcher_icon">
         <activity
