@@ -66,7 +66,7 @@ class NewsRepository {
                 break;
         }
 
-        if (response.isSuccessful) {   /// [1.◯/◯]
+        if (response.isSuccessful) {   /// [1.◯/◯]&&[.isSuccessful: statusCode >= 200 && statusCode < 300 -> true]
             final responseBody = response.body;
             result = News.fromJson(responseBody).articles;   /// [news_repository.dart/News class/ .fromJson]
             /// print("comm: ◯/◯: $result");  [articlesゆえ詳細指定しないと、配列「Instance of 'Article',xxx」を返す]
