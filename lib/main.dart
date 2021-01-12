@@ -33,7 +33,7 @@ void main() {
       //     ),
       // ],
       /// [````` For ProxyProvider `````]
-      providers: globalProviders,
+      providers: globalProviders,   /// [dipendency injection: To di_roviders.dart]
 
       child: MyApp(),
     ),

@@ -66,13 +66,14 @@ class NewsRepository {
                 break;
         }
 
-        if (response.isSuccessful) {   /// [1.◯/◯]&&[.isSuccessful: statusCode >= 200 && statusCode < 300 -> true]
+        if (response.isSuccessful) {   /// [1.◯/◯]&&[.isSuccessful: 200 <= statusCode < 300 ,,, true]
             final responseBody = response.body;
             result = News.fromJson(responseBody).articles;   /// [news_repository.dart/News class/ .fromJson]
             /// print("comm: ◯/◯: $result");  [articlesゆえ詳細指定しないと、配列「Instance of 'Article',xxx」を返す]
             print("comm: Repository: ◯/◯: $responseBody");   /// [Json多階層で返す]
             // result = await insertAndReadFromDB();
             result = await insertAndReadFromDB(responseBody);
+
         } else {   /// [2.◯/x]
             final errorCode = response.statusCode;
             final error = response.error;
