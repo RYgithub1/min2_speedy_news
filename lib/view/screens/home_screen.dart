@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:min2_speedy_news/view/screens/pages/about_us_page.dart';
 import 'package:min2_speedy_news/view/screens/pages/headline_page.dart';
+import 'package:min2_speedy_news/view/screens/pages/hot_video_page.dart';
 import 'package:min2_speedy_news/view/screens/pages/news_list_page.dart';
 
 
@@ -20,6 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
     HeadlinePage(),
     NewsListPage(),
     AboutUsPage(),
+    HotVideoPage(videoPlayerController: null,),
   ];
 
 
@@ -48,6 +50,10 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavigationBarItem(
             icon: const Icon(Icons.app_settings_alt),
             label: "about",
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.video_call),
+            label: "video",
           ),
         ],
         onTap: (index) {
