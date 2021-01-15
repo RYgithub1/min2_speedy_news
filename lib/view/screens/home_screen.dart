@@ -22,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
     HeadlinePage(),
     NewsListPage(),
     AboutUsPage(),
-    VideoShowPage(),
+    // VideoShowPage(),   /// [chewie]
   ];
 
 
@@ -52,10 +52,10 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: const Icon(Icons.app_settings_alt),
             label: "about",
           ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.video_call),
-            label: "video",
-          ),
+          // BottomNavigationBarItem(
+          //   icon: const Icon(Icons.video_call),
+          //   label: "video",
+          // ),
         ],
         onTap: (index) {
           setState(() {

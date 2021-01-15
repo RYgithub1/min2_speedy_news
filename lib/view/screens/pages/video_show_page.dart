@@ -11,16 +11,16 @@ class VideoShowPage extends StatelessWidget {
       appBar: AppBar(title: Text("VIDEO")),
       body: ListView(
         children: <Widget>[
-          ChewieListItem(
-            videoPlayerController: VideoPlayerController
-                .asset("assets/videos/drivingLover.mp4"),
-            looping: true,
-          ),
-          ChewieListItem(
-            videoPlayerController: VideoPlayerController
-                .asset("assets/videos/fireworksMaestro.mp4"),
-            looping: true,
-          ),
+          // ChewieListItem(
+          //   videoPlayerController: VideoPlayerController
+          //       .asset("assets/videos/drivingLover.mp4"),
+          //   looping: true,
+          // ),
+          // ChewieListItem(
+          //   videoPlayerController: VideoPlayerController
+          //       .asset("assets/videos/fireworksMaestro.mp4"),
+          //   looping: true,
+          // ),
         ],
       ),
     );
