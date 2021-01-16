@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:min2_speedy_news/view/screens/pages/headline_page.dart';
 import 'package:min2_speedy_news/view/screens/pages/news_list_page.dart';
 import 'package:min2_speedy_news/view/screens/pages/about_us_page.dart';
-import 'package:min2_speedy_news/view/components/hot_video_page.dart';
 import 'package:min2_speedy_news/view/screens/pages/video_show_page.dart';
 
 
@@ -22,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
     HeadlinePage(),
     NewsListPage(),
     AboutUsPage(),
-    // VideoShowPage(),   /// [chewie]
+    VideoShowPage(),   /// [chewie]
   ];
 
 
@@ -41,21 +40,21 @@ class _HomeScreenState extends State<HomeScreen> {
         currentIndex: _currentIndex,
         items: const [
           BottomNavigationBarItem(
-            icon: const Icon(Icons.highlight),   /// [const for memory]
+            icon: const Icon(Icons.highlight, color: Colors.orange),   /// [const for memory]
             label: "breaking",
           ),
           BottomNavigationBarItem(
-            icon: const Icon(Icons.list),
+            icon: const Icon(Icons.list, color: Colors.orange),
             label: "list",
           ),
           BottomNavigationBarItem(
-            icon: const Icon(Icons.app_settings_alt),
+            icon: const Icon(Icons.app_settings_alt, color: Colors.orange),
             label: "about",
           ),
-          // BottomNavigationBarItem(
-          //   icon: const Icon(Icons.video_call),
-          //   label: "video",
-          // ),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.video_call, color: Colors.orange),
+            label: "video",
+          ),
         ],
         onTap: (index) {
           setState(() {
